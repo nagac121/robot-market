@@ -1,9 +1,9 @@
 import * as React from "react";
-import styles from "App.module.css";
+import styles from "./App.module.css";
 
 function App() {
   return (
-    <div className="App">
+    <div className={styles.App}>
       <header className={styles.header}>Robot Market</header>
       <div>
         <div className="grid"></div>

@@ -1,4 +1,12 @@
-.header{
-    height: 10px;
-    background-color: aliceblue;
+.App {
+  margin: 10px;
 }
+.header {
+  background-color: rgb(50, 50, 207);
+  border: 1px solid navy;
+  color: white;
+  font-size: 20px;
+  padding: 10px;
+}
+/* rgb(74, 74, 207);
+rgb(50, 50, 207); */
