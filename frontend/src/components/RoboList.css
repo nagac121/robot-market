@@ -19,7 +19,7 @@
 .item-detail {
   background: #f4f3f2;
   border: 1px solid #fcfcfc;
-  padding: 0 5px 5px;
+  margin: 5px;
 }
 
 /* spinner

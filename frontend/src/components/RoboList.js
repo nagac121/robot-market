@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 
 import "./RoboList.css";
+import Button from "@mui/material/Button";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 function RoboList(props) {
   const [isLoading, setIsLoading] = useState(false);
@@ -62,8 +64,14 @@ function RoboList(props) {
                 <div>MRP: &#3647;{robo.price}</div>
                 <div>Qty: {robo.stock}</div>
                 <div>Date: {robo.formattedDate}</div>
-                <div>Material:  {robo.material}</div>
+                <div>Material: {robo.material}</div>
               </div>
+              <Button
+                variant="outlined"
+                startIcon={<AddShoppingCartIcon fontSize="small" />}
+              >
+                Add
+              </Button>
             </div>
           );
         })}
