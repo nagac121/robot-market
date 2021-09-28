@@ -1,7 +1,8 @@
 import { React, useCallback, useEffect, useState } from "react";
-import styles from "./App.module.css";
+import "./App.css";
 
 import RoboList from "./components/RoboList";
+import Cart from "./components/Cart";
 
 function App() {
   let [robos, setRobos] = useState([]);
@@ -24,11 +25,15 @@ function App() {
   }, [fetchRobos]);
 
   return (
-    <div className={styles.App}>
-      <header className={styles.header}>Robot Market</header>
-      <div>
-        <RoboList className="RoboList" roboData={robos}></RoboList>
-        <div className="cart"></div>
+    <div className="App">
+      <header className="header">Robot Market</header>
+      <div className="robo-cart">
+        <div className="robo-list">
+          <RoboList roboData={robos}></RoboList>
+        </div>
+        <div className="cart">
+          <Cart/>
+        </div>
       </div>
     </div>
   );

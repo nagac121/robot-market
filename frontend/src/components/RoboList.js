@@ -20,10 +20,6 @@ function RoboList(props) {
     return true;
   };
 
-  // useEffect(() => {
-  //   console.log(`Image Urls list: ${props.roboData}`);
-  // }, [props.roboData]);
-
   const onImgLoad = () => {
     const galleryRef = imageRef.current;
     const imgLoadingNotCompleted = !imagesLoaded(galleryRef);
@@ -62,13 +58,14 @@ function RoboList(props) {
               <div className="robo-name">{robo.name}</div>
               <div className="item-detail">
                 <div>MRP: &#3647;{robo.price}</div>
-                <div>Qty: {robo.stock}</div>
+                <div>Stock: {robo.stock}</div>
                 <div>Date: {robo.formattedDate}</div>
                 <div>Material: {robo.material}</div>
               </div>
               <Button
                 variant="outlined"
                 startIcon={<AddShoppingCartIcon fontSize="small" />}
+                disabled={robo.stock === 0}
               >
                 Add
               </Button>

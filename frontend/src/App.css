@@ -9,6 +9,21 @@
   margin-bottom: 10px;
   padding: 10px;
 }
+
+.robo-list{
+  border: 1px solid rgb(124, 123, 123);
+  float: left;
+  width: 75%;
+  margin: 10px;
+  padding: 5px;
+}
+.cart{
+  border: 1px solid black;
+  float: right;
+  width: 20%;
+  margin: 10px;
+  padding: 5px;
+}
 /* possible colors
 rgb(74, 74, 207);
 rgb(50, 50, 207); */
