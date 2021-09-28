@@ -1,3 +1,27 @@
+/* grid css */
+.robo-img {
+  text-align: center;
+}
+.robo-item {
+  background-color: #fff;
+  border: 1px solid #f2f2f2;
+  float: left;
+  margin: 2px;
+  padding: 5px;
+}
+
+.robo-name {
+  color: #000;
+  font: 19px ProximaNovaA-Regular;
+  padding: 5px;
+}
+
+.item-detail {
+  background: #f4f3f2;
+  border: 1px solid #fcfcfc;
+  padding: 0 5px 5px;
+}
+
 /* spinner
 https://projects.lukehaas.me/css-loaders/
  */

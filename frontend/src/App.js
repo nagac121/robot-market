@@ -9,8 +9,14 @@ function App() {
   const fetchRobos = useCallback(async () => {
     const fetchRoboPromise = await fetch("http://localhost:8000/api/robots");
     const roboJson = await fetchRoboPromise.json();
+
+    roboJson.data.forEach((element) => {
+      const date = new Date(element.createdAt).getDate();
+      const month = new Date(element.createdAt).getMonth() + 1;
+      const year = new Date(element.createdAt).getFullYear();
+      element.formattedDate = date + "-" + month + "-" + year;
+    });
     setRobos(roboJson.data);
-    console.log("roboJson: ", roboJson);
   }, []);
 
   useEffect(() => {

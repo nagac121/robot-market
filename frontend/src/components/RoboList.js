@@ -22,10 +22,11 @@ function RoboList(props) {
   //   console.log(`Image Urls list: ${props.roboData}`);
   // }, [props.roboData]);
 
-  const onImgLoad = (robo, e) => {
+  const onImgLoad = () => {
     const galleryRef = imageRef.current;
-    const loaded = imagesLoaded(galleryRef);
-    setIsLoading(loaded);
+    const imgLoadingNotCompleted = !imagesLoaded(galleryRef);
+    console.log("imgLoadingNotCompleted: ", imgLoadingNotCompleted);
+    setIsLoading(imgLoadingNotCompleted);
   };
 
   const onImgError = (e) => {
@@ -45,15 +46,24 @@ function RoboList(props) {
       {renderSpinner()}
       <div className="images">
         {props.roboData.map((robo) => {
+          // image, name, price, stock, created date, material,
           return (
-            <div key={robo.image}>
-              <img
-                src={robo.image}
-                onLoad={onImgLoad.bind(this, robo)}
-                onError={onImgError.bind(this)}
-                alt=""
-              />
-              <div>{robo.name}</div>
+            <div key={robo.image} className="robo-item">
+              <div className="robo-img">
+                <img
+                  alt=""
+                  onError={onImgError.bind(this)}
+                  onLoad={onImgLoad.bind(this, robo)}
+                  src={robo.image}
+                />
+              </div>
+              <div className="robo-name">{robo.name}</div>
+              <div className="item-detail">
+                <div>MRP: &#3647;{robo.price}</div>
+                <div>Qty: {robo.stock}</div>
+                <div>Date: {robo.formattedDate}</div>
+                <div>Material:  {robo.material}</div>
+              </div>
             </div>
           );
         })}
