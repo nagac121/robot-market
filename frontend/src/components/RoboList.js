@@ -42,26 +42,26 @@ function RoboList(props) {
   return (
     <div className="gallery" ref={imageRef}>
       {renderSpinner()}
-      <div className="images">
-        {props.roboData.map((robo) => {
-          // image, name, price, stock, created date, material,
-          return (
-            <div key={robo.image} className="robo-item">
-              <div className="robo-img">
-                <img
-                  alt=""
-                  onError={onImgError.bind(this)}
-                  onLoad={onImgLoad.bind(this, robo)}
-                  src={robo.image}
-                />
-              </div>
-              <div className="robo-name">{robo.name}</div>
-              <div className="item-detail">
-                <div>MRP: &#3647;{robo.price}</div>
-                <div>Stock: {robo.stock}</div>
-                <div>Date: {robo.formattedDate}</div>
-                <div>Material: {robo.material}</div>
-              </div>
+      {props.roboData.map((robo) => {
+        // image, name, price, stock, created date, material,
+        return (
+          <div key={robo.image} className="robo-item">
+            <div className="robo-img">
+              <img
+                alt=""
+                onError={onImgError.bind(this)}
+                onLoad={onImgLoad.bind(this, robo)}
+                src={robo.image}
+              />
+            </div>
+            <div className="robo-name">{robo.name}</div>
+            <div className="item-detail">
+              <div>MRP: &#3647;{robo.price}</div>
+              <div>Stock: {robo.stock}</div>
+              <div>Date: {robo.formattedDate}</div>
+              <div>Material: {robo.material}</div>
+            </div>
+            {robo.stock !== 0 && (
               <Button
                 variant="outlined"
                 startIcon={<AddShoppingCartIcon fontSize="small" />}
@@ -69,10 +69,11 @@ function RoboList(props) {
               >
                 Add
               </Button>
-            </div>
-          );
-        })}
-      </div>
+            )}
+            {robo.stock === 0 && <p>Out of stock</p>}
+          </div>
+        );
+      })}
     </div>
   );
 }

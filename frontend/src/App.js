@@ -32,7 +32,7 @@ function App() {
           <RoboList roboData={robos}></RoboList>
         </div>
         <div className="cart">
-          <Cart/>
+          <Cart />
         </div>
       </div>
     </div>
