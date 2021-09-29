@@ -23,7 +23,6 @@ function RoboList(props) {
   const onImgLoad = () => {
     const galleryRef = imageRef.current;
     const imgLoadingNotCompleted = !imagesLoaded(galleryRef);
-    console.log("imgLoadingNotCompleted: ", imgLoadingNotCompleted);
     setIsLoading(imgLoadingNotCompleted);
   };
 
@@ -37,6 +36,10 @@ function RoboList(props) {
       return null;
     }
     return <div className="loader">Loading...</div>;
+  };
+
+  const onAddHandler = () => {
+    console.log("onAddHandler");
   };
 
   return (
@@ -66,6 +69,7 @@ function RoboList(props) {
                 variant="outlined"
                 startIcon={<AddShoppingCartIcon fontSize="small" />}
                 disabled={robo.stock === 0}
+                onClick={onAddHandler}
               >
                 Add
               </Button>

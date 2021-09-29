@@ -4,18 +4,18 @@
   flex-direction: row;
   flex-wrap: wrap;
   text-align: center;
+  justify-content: space-evenly;
+  align-items: stretch;
 }
+
 .robo-item {
   background-color: #fff;
   border: 1px solid #f2f2f2;
   float: left;
   margin: 2px;
   padding: 5px;
-  min-height: 300px;
 }
-/* .robo-img {
-  text-align: center;
-} */
+
 .item-detail {
   background: #f4f3f2;
   border: 1px solid #fcfcfc;
