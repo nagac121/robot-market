@@ -1,12 +1,17 @@
-import React, { useRef, useState } from "react";
-
 import "./RoboList.css";
 import Button from "@mui/material/Button";
+
+import React, { useRef, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { roboActions } from "../store/robo-slice";
 
 function RoboList(props) {
   const [isLoading, setIsLoading] = useState(false);
   const imageRef = useRef();
+  const dispatch = useDispatch();
+  const roboItems = useSelector((state) => state.robo.items);
 
   const imagesLoaded = (parentNode) => {
     // returns 'true' if all imgs are loaded, otherwise returns false.
@@ -38,14 +43,15 @@ function RoboList(props) {
     return <div className="loader">Loading...</div>;
   };
 
-  const onAddHandler = () => {
+  const onAddHandler = (robo) => {
+    // cart should contain list of selected robots, total amount and total price
     console.log("onAddHandler");
   };
 
   return (
     <div className="gallery" ref={imageRef}>
       {renderSpinner()}
-      {props.roboData.map((robo) => {
+      {roboItems.map((robo) => {
         // image, name, price, stock, created date, material,
         return (
           <div key={robo.image} className="robo-item">
@@ -64,17 +70,14 @@ function RoboList(props) {
               <div>Date: {robo.formattedDate}</div>
               <div>Material: {robo.material}</div>
             </div>
-            {robo.stock !== 0 && (
-              <Button
-                variant="outlined"
-                startIcon={<AddShoppingCartIcon fontSize="small" />}
-                disabled={robo.stock === 0}
-                onClick={onAddHandler}
-              >
-                Add
-              </Button>
-            )}
-            {robo.stock === 0 && <p>Out of stock</p>}
+            <Button
+              variant="outlined"
+              startIcon={<AddShoppingCartIcon fontSize="small" />}
+              disabled={robo.stock === 0}
+              onClick={onAddHandler.bind(this, robo)}
+            >
+              Add
+            </Button>
           </div>
         );
       })}

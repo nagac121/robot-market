@@ -15,11 +15,15 @@
   margin: 2px;
   padding: 5px;
 }
+.robo-item:hover {
+  box-shadow: 0 0 4px #b6b6b6;
+}
 
 .item-detail {
   background: #f4f3f2;
   border: 1px solid #fcfcfc;
   margin: 5px;
+  padding: 5px;
 }
 
 .robo-name {

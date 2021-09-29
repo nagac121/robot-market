@@ -1,38 +1,28 @@
-import { React, useCallback, useEffect, useState } from "react";
 import "./App.css";
 
+import { React, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import RoboList from "./components/RoboList";
 import Cart from "./components/Cart";
+import { fetchRoboData } from "./store/robo-thunk";
 
 function App() {
-  let [robos, setRobos] = useState([]);
-
-  const fetchRobos = useCallback(async () => {
-    const fetchRoboPromise = await fetch("http://localhost:8000/api/robots");
-    const roboJson = await fetchRoboPromise.json();
-
-    roboJson.data.forEach((element) => {
-      const date = new Date(element.createdAt).getDate();
-      const month = new Date(element.createdAt).getMonth() + 1;
-      const year = new Date(element.createdAt).getFullYear();
-      element.formattedDate = date + "-" + month + "-" + year;
-    });
-    setRobos(roboJson.data);
-  }, []);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchRobos();
-  }, [fetchRobos]);
+    console.log("useEffect");
+    dispatch(fetchRoboData())
+  }, [dispatch]);
 
   return (
     <div className="App">
       <header className="header">Robot Market</header>
       <div className="robo-cart">
         <div className="robo-list">
-          <RoboList roboData={robos}></RoboList>
+           <RoboList /> 
         </div>
         <div className="cart">
-          <Cart />
+           <Cart /> 
         </div>
       </div>
     </div>
