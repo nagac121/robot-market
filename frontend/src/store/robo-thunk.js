@@ -10,7 +10,6 @@ export const fetchRoboData = () => {
         throw new Error("Could not fetch cart data!");
       }
       const dataArr = await response.json();
-      console.log("dataArr: ", dataArr);
 
       dataArr.data.forEach((element) => {
         const date = new Date(element.createdAt).getDate();
@@ -23,7 +22,6 @@ export const fetchRoboData = () => {
     // dispatch action
     try {
       const roboData = await fetchData();
-      console.log("robodata: ",roboData)
       dispatch(
         roboActions.replaceRobo({
           items: roboData.data || [],

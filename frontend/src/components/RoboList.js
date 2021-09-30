@@ -43,9 +43,12 @@ function RoboList(props) {
     return <div className="loader">Loading...</div>;
   };
 
-  const onAddHandler = (robo) => {
+  const onClkAddToCart = (robo) => {
     // cart should contain list of selected robots, total amount and total price
-    console.log("onAddHandler");
+    if (robo.stock === 0) {
+      return alert("stock out of date");
+    }
+    dispatch(roboActions.addToCart({ cartItems: robo || [] }));
   };
 
   return (
@@ -74,9 +77,9 @@ function RoboList(props) {
               variant="outlined"
               startIcon={<AddShoppingCartIcon fontSize="small" />}
               disabled={robo.stock === 0}
-              onClick={onAddHandler.bind(this, robo)}
+              onClick={onClkAddToCart.bind(this, robo)}
             >
-              Add
+              Add To Cart
             </Button>
           </div>
         );
