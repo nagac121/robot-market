@@ -4,15 +4,22 @@ import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-import * as React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { roboActions } from "../store/robo-slice";
 
 export default function SelectLabels() {
-  const [material, setMaterial] = React.useState("");
+  const dispatch = useDispatch();
+  const [material, setMaterial] = useState("");
   const ml = useSelector((state) => state.robo.materialList);
 
   const handleChange = (event) => {
-    setMaterial(event.target.value);
+    const selectedVal = event.target.value;
+    setMaterial((prevState) => {
+      return event.target.value;
+    });
+    dispatch(roboActions.filterItems({ filterValue: event.target.value }));
+    dispatch(roboActions.filterValue({ filterValue: selectedVal }));
   };
 
   return (
@@ -24,16 +31,13 @@ export default function SelectLabels() {
           displayEmpty
           inputProps={{ "aria-label": "Without label" }}
         >
-          <MenuItem value="">
-            <em>Select</em>
-          </MenuItem>
+          <MenuItem value="">Select All</MenuItem>
           {ml.map((material) => (
             <MenuItem value={material} key={material}>
               {material}
             </MenuItem>
           ))}
         </Select>
-        <FormHelperText>Select An Option</FormHelperText>
       </FormControl>
     </div>
   );

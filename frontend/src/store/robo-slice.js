@@ -3,21 +3,31 @@ import { createSlice } from "@reduxjs/toolkit";
 const roboSlice = createSlice({
   name: "robo",
   initialState: {
-    items: [],
     cartItems: [],
-    materialList: []
+    filteredItems: [],
+    filterValue: "",
+    items: [],
+    materialList: [],
   },
   reducers: {
     addToCart(state, action) {
       state.cartItems.push(action.payload.cartItems);
     },
+    filterItems(state, action) {
+      state.filteredItems = state.items.filter(
+        (item) => item.material === action.payload.filterValue
+      );
+    },
+    filterValue(state, action) {
+      state.filterValue = action.payload.filterValue;
+    },
     replaceRobo(state, action) {
       state.items = action.payload.items;
     },
-    materialList(state,action) {
+    materialList(state, action) {
       state.materialList = action.payload.materialList;
     },
-    updateItems(state, action) {
+    updateStock(state, action) {
       const newItem = action.payload;
       const existingItem = state.items.find(
         (item) => item.createdAt === newItem.createdAt

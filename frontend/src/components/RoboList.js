@@ -11,8 +11,12 @@ import ProductFilter from "../UI/ProductFilter";
 function RoboList(props) {
   const [isLoading, setIsLoading] = useState(false);
   const imageRef = useRef();
+
   const dispatch = useDispatch();
   const roboItems = useSelector((state) => state.robo.items);
+  const filteredRoboItems = useSelector((state) => state.robo.filteredItems);
+  const filterValue = useSelector((state) => state.robo.filterValue);
+  const galleryItems = filterValue ? filteredRoboItems : roboItems;
 
   const imagesLoaded = (parentNode) => {
     // returns 'true' if all imgs are loaded, otherwise returns false.
@@ -57,10 +61,10 @@ function RoboList(props) {
       <div className="filter">
         <ProductFilter />
       </div>
-      <hr/>
+      <hr />
       <div className="gallery" ref={imageRef}>
         {renderSpinner()}
-        {roboItems.map((robo) => {
+        {galleryItems.map((robo) => {
           // image, name, price, stock, created date, material,
           return (
             <div key={robo.image} className="robo-item">
