@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { roboActions } from "../store/robo-slice";
+import ProductFilter from "../UI/ProductFilter";
 
 function RoboList(props) {
   const [isLoading, setIsLoading] = useState(false);
@@ -52,38 +53,44 @@ function RoboList(props) {
   };
 
   return (
-    <div className="gallery" ref={imageRef}>
-      {renderSpinner()}
-      {roboItems.map((robo) => {
-        // image, name, price, stock, created date, material,
-        return (
-          <div key={robo.image} className="robo-item">
-            <div className="robo-img">
-              <img
-                alt=""
-                onError={onImgError.bind(this)}
-                onLoad={onImgLoad.bind(this, robo)}
-                src={robo.image}
-              />
+    <div>
+      <div className="filter">
+        <ProductFilter />
+      </div>
+      <hr/>
+      <div className="gallery" ref={imageRef}>
+        {renderSpinner()}
+        {roboItems.map((robo) => {
+          // image, name, price, stock, created date, material,
+          return (
+            <div key={robo.image} className="robo-item">
+              <div className="robo-img">
+                <img
+                  alt=""
+                  onError={onImgError.bind(this)}
+                  onLoad={onImgLoad.bind(this, robo)}
+                  src={robo.image}
+                />
+              </div>
+              <div className="robo-name">{robo.name}</div>
+              <div className="item-detail">
+                <div>MRP: &#3647;{robo.price}</div>
+                <div>Stock: {robo.stock}</div>
+                <div>Date: {robo.formattedDate}</div>
+                <div>Material: {robo.material}</div>
+              </div>
+              <Button
+                variant="outlined"
+                startIcon={<AddShoppingCartIcon fontSize="small" />}
+                disabled={robo.stock === 0}
+                onClick={onClkAddToCart.bind(this, robo)}
+              >
+                Add To Cart
+              </Button>
             </div>
-            <div className="robo-name">{robo.name}</div>
-            <div className="item-detail">
-              <div>MRP: &#3647;{robo.price}</div>
-              <div>Stock: {robo.stock}</div>
-              <div>Date: {robo.formattedDate}</div>
-              <div>Material: {robo.material}</div>
-            </div>
-            <Button
-              variant="outlined"
-              startIcon={<AddShoppingCartIcon fontSize="small" />}
-              disabled={robo.stock === 0}
-              onClick={onClkAddToCart.bind(this, robo)}
-            >
-              Add To Cart
-            </Button>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 }

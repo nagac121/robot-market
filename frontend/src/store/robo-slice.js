@@ -5,10 +5,17 @@ const roboSlice = createSlice({
   initialState: {
     items: [],
     cartItems: [],
+    materialList: []
   },
   reducers: {
+    addToCart(state, action) {
+      state.cartItems.push(action.payload.cartItems);
+    },
     replaceRobo(state, action) {
       state.items = action.payload.items;
+    },
+    materialList(state,action) {
+      state.materialList = action.payload.materialList;
     },
     updateItems(state, action) {
       const newItem = action.payload;
@@ -18,9 +25,6 @@ const roboSlice = createSlice({
       if (existingItem) {
         existingItem.stock = existingItem.stock--;
       }
-    },
-    addToCart(state, action) {
-      state.cartItems.push(action.payload.cartItems);
     },
   },
 });

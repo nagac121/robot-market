@@ -4,7 +4,6 @@ import "./Cart.css";
 
 function Cart() {
   const cartItems = useSelector((state) => state.robo.cartItems);
-  console.log("cart-1: ", cartItems);
 
   return (
     <div className="Cart-section">
