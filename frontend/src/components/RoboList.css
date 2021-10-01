@@ -7,12 +7,16 @@ hr {
 }
 /* grid css */
 .gallery {
+  align-items: stretch;
+  cursor: default;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  text-align: center;
+  height: 70vh;
   justify-content: space-evenly;
-  align-items: stretch;
+  overflow: scroll;
+  scroll-behavior: auto;
+  text-align: center;
 }
 
 .robo-item {

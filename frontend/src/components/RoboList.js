@@ -56,7 +56,8 @@ function RoboList(props) {
     // cart should contain list of selected robots, total amount and total price
     dispatch(
       roboActions.addToCart({
-        addedItem: robo,
+        item: robo,
+        userAction: "add"
       })
     );
   };
@@ -96,14 +97,6 @@ function RoboList(props) {
                 <div>Material: {robo.material}</div>
               </div>
               <div>
-                {/* <RemoveSharpIcon disabled={robo.stock === 0}></RemoveSharpIcon>
-                <span>qty: {robo.qty}</span>
-                <AddSharpIcon disabled={robo.stock === 0}></AddSharpIcon> */}
-                
-                {/* <AddCircleOutlineSharpIcon></AddCircleOutlineSharpIcon> */}
-                {/* <button class="btn lt" ng-click="vm.decreamentQuantity();">
-                  <i class="fa fa-minus"></i>
-                </button> */}
                 <Button
                   variant="outlined"
                   startIcon={<AddShoppingCartIcon fontSize="small" />}

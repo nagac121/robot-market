@@ -12,22 +12,48 @@ const roboSlice = createSlice({
   reducers: {
     addToCart(state, action) {
       let updatedItem = {};
+      const userAction = action.payload.userAction;
       // update qty of added Item
       state.items.forEach((item) => {
-        if (item.createdAt === action.payload.addedItem.createdAt) {
-          item.qty++;
-          item.stock--;
+        if (item.createdAt === action.payload.item.createdAt) {
+          if (userAction === "add") {
+            item.qty++;
+            item.stock--;
+          } else {
+            // userAction === "remove"
+            item.qty--;
+            item.stock++;
+          }
           updatedItem = { ...item };
         }
       });
       // add item to cart with qty 1
-      if (updatedItem.qty === 1) {
-        state.cartItems.push(updatedItem);
+      const actionQtyCheck =
+        (userAction === "add" && updatedItem.qty === 1) ||
+        (userAction === "remove" && updatedItem.qty === 0)
+          ? true
+          : false;
+      if (actionQtyCheck) {
+        if (userAction === "add") {
+          state.cartItems.push(updatedItem);
+        } else {
+          // userAction === "remove"
+          state.cartItems = state.cartItems.filter(
+            (element) => element.createdAt !== updatedItem.createdAt
+          );
+        }
       } else {
-        // update qty in cart items
+        // update cart items
         state.cartItems.forEach((element) => {
           if (element.createdAt === updatedItem.createdAt) {
-            element.qty++;
+            if (userAction === "add") {
+              element.qty++;
+              element.stock--;
+            } else {
+              // userAction === "remove"
+              element.qty--;
+              element.stock++;
+            }
           }
         });
       }

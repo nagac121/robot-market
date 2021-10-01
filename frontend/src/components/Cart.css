@@ -1,12 +1,18 @@
+.cart-section{
+  align-items: center;
+  text-align: center;
+}
+
 header{
   background: #f4f3f2;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   padding-bottom: 5px;
   text-align: center;
 }
 .cart-item {
   background: #f9eddd;
+  margin: 5px;
   padding: 5px 10px 10px;
 }
 .cart-item-name{
@@ -20,6 +26,7 @@ header{
 .cart-qty {
   background: lightgoldenrodyellow;
 }
+
 input{
   font-weight: bold;
   text-align: center;
