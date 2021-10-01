@@ -30,6 +30,12 @@ export default function SelectLabels() {
           onChange={handleChange}
           displayEmpty
           inputProps={{ "aria-label": "Without label" }}
+          sx={{
+            "& .MuiSelect-select": {
+              paddingTop: 0.5,
+              paddingBottom: 0.5,
+            },
+          }}
         >
           <MenuItem value="">Select All</MenuItem>
           {ml.map((material) => (
