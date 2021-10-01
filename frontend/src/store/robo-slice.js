@@ -17,12 +17,19 @@ const roboSlice = createSlice({
         if (item.createdAt === action.payload.addedItem.createdAt) {
           item.qty++;
           item.stock--;
-          updatedItem = {...item};
+          updatedItem = { ...item };
         }
       });
-      console.log("updated item: ", updatedItem)
+      // add item to cart with qty 1
       if (updatedItem.qty === 1) {
         state.cartItems.push(updatedItem);
+      } else {
+        // update qty in cart items
+        state.cartItems.forEach((element) => {
+          if (element.createdAt === updatedItem.createdAt) {
+            element.qty++;
+          }
+        });
       }
     },
     filterItems(state, action) {
@@ -38,15 +45,6 @@ const roboSlice = createSlice({
     },
     materialList(state, action) {
       state.materialList = action.payload.materialList;
-    },
-    updateStock(state, action) {
-      const newItem = action.payload;
-      const existingItem = state.items.find(
-        (item) => item.createdAt === newItem.createdAt
-      );
-      if (existingItem) {
-        existingItem.stock = existingItem.stock--;
-      }
     },
   },
 });
