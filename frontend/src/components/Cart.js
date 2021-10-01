@@ -4,7 +4,7 @@ import IconButton from "@mui/material/IconButton";
 import AddSharpIcon from "@mui/icons-material/AddSharp";
 import RemoveSharpIcon from "@mui/icons-material/RemoveSharp";
 
-import "./Cart.css";
+import "./cart.css";
 
 import { roboActions } from "../store/robo-slice";
 

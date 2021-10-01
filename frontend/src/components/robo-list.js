@@ -1,16 +1,13 @@
-import "./RoboList.css";
+import "./robo-list.css";
 
 import React, { useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import Button from "@mui/material/Button";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-// import AddCircleOutlineSharpIcon from "@mui/icons-material/AddCircleOutlineSharp";
-// import RemoveSharpIcon from '@mui/icons-material/RemoveSharp';
-// import AddSharpIcon from '@mui/icons-material/AddSharp';
 
 import { roboActions } from "../store/robo-slice";
-import ProductFilter from "./ProductFilter";
+import ProductFilter from "./product-filter";
 
 function RoboList(props) {
   const [isLoading, setIsLoading] = useState(false);

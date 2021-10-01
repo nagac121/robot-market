@@ -2,8 +2,8 @@ import "./App.css";
 
 import { React, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import RoboList from "./components/RoboList";
-import Cart from "./components/Cart";
+import RoboList from "./components/robo-list";
+import Cart from "./components/cart";
 import { fetchRoboData } from "./store/robo-thunk";
 
 function App() {
