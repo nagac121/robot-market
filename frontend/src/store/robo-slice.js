@@ -11,7 +11,19 @@ const roboSlice = createSlice({
   },
   reducers: {
     addToCart(state, action) {
-      state.cartItems.push(action.payload.cartItems);
+      let updatedItem = {};
+      // update qty of added Item
+      state.items.forEach((item) => {
+        if (item.createdAt === action.payload.addedItem.createdAt) {
+          item.qty++;
+          item.stock--;
+          updatedItem = {...item};
+        }
+      });
+      console.log("updated item: ", updatedItem)
+      if (updatedItem.qty === 1) {
+        state.cartItems.push(updatedItem);
+      }
     },
     filterItems(state, action) {
       state.filteredItems = state.items.filter(

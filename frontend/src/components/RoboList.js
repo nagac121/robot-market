@@ -1,10 +1,14 @@
 import "./RoboList.css";
-import Button from "@mui/material/Button";
 
 import React, { useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
+import Button from "@mui/material/Button";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+// import AddCircleOutlineSharpIcon from "@mui/icons-material/AddCircleOutlineSharp";
+// import RemoveSharpIcon from '@mui/icons-material/RemoveSharp';
+// import AddSharpIcon from '@mui/icons-material/AddSharp';
+
 import { roboActions } from "../store/robo-slice";
 import ProductFilter from "./ProductFilter";
 
@@ -48,12 +52,13 @@ function RoboList(props) {
     return <div className="loader">Loading...</div>;
   };
 
-  const onClkAddToCart = (robo) => {
+  const onClickAddBtn = (robo) => {
     // cart should contain list of selected robots, total amount and total price
-    if (robo.stock === 0) {
-      return alert("stock out of date");
-    }
-    dispatch(roboActions.addToCart({ cartItems: robo || [] }));
+    dispatch(
+      roboActions.addToCart({
+        addedItem: robo,
+      })
+    );
   };
 
   return (
@@ -90,14 +95,24 @@ function RoboList(props) {
                 <div>Date: {robo.formattedDate}</div>
                 <div>Material: {robo.material}</div>
               </div>
-              <Button
-                variant="outlined"
-                startIcon={<AddShoppingCartIcon fontSize="small" />}
-                disabled={robo.stock === 0}
-                onClick={onClkAddToCart.bind(this, robo)}
-              >
-                Add To Cart
-              </Button>
+              <div>
+                {/* <RemoveSharpIcon disabled={robo.stock === 0}></RemoveSharpIcon>
+                <span>qty: {robo.qty}</span>
+                <AddSharpIcon disabled={robo.stock === 0}></AddSharpIcon> */}
+                
+                {/* <AddCircleOutlineSharpIcon></AddCircleOutlineSharpIcon> */}
+                {/* <button class="btn lt" ng-click="vm.decreamentQuantity();">
+                  <i class="fa fa-minus"></i>
+                </button> */}
+                <Button
+                  variant="outlined"
+                  startIcon={<AddShoppingCartIcon fontSize="small" />}
+                  disabled={robo.stock === 0}
+                  onClick={onClickAddBtn.bind(this, robo)}
+                >
+                  Add
+                </Button>
+              </div>
             </div>
           );
         })}

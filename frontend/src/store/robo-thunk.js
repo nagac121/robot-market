@@ -24,6 +24,8 @@ export const fetchRoboData = () => {
           obj[element.material] = true;
           materialList.push(element.material);
         }
+        // add qty for each item
+        element.qty = 0;
       });
 
       return dataArr;
