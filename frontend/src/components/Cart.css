@@ -1,0 +1,27 @@
+header{
+  background: #f4f3f2;
+  font-weight: bold;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+}
+.cart-item {
+  background: #f9eddd;
+  padding: 5px 10px 10px;
+}
+.cart-item-name{
+  font-weight: bold;
+  margin: 0 10px 5px 0;
+}
+.qty-icon{
+  vertical-align: middle;
+}
+
+.cart-qty {
+  background: lightgoldenrodyellow;
+}
+input{
+  font-weight: bold;
+  text-align: center;
+  width: 20px;
+}
