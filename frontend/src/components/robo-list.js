@@ -10,13 +10,15 @@ import { roboActions } from "../store/robo-slice";
 import ProductFilter from "./product-filter";
 
 function RoboList(props) {
-  const [isLoading, setIsLoading] = useState(false);
   const imageRef = useRef();
+  const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
   const roboItems = useSelector((state) => state.robo.items);
   const filteredRoboItems = useSelector((state) => state.robo.filteredItems);
   const filterValue = useSelector((state) => state.robo.filterValue);
+  // const materialMap = useSelector((state) => state.robo.materialMap);
+
   const galleryItems = filterValue ? filteredRoboItems : roboItems;
 
   const imagesLoaded = (parentNode) => {
@@ -52,9 +54,15 @@ function RoboList(props) {
   const onClickAddBtn = (robo) => {
     // cart should contain list of selected robots, total amount and total price
     dispatch(
-      roboActions.addToCart({
+      roboActions.updateCart({
         item: robo,
-        userAction: "add"
+        userAction: "addItemToCart",
+      })
+    );
+    dispatch(
+      roboActions.updateMaterialCount({
+        materialType: robo.material,
+        userAction: "addItemToCart",
       })
     );
   };

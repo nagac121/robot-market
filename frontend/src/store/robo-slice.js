@@ -8,15 +8,16 @@ const roboSlice = createSlice({
     filterValue: "",
     items: [],
     materialList: [],
+    materialMap: {},
   },
   reducers: {
-    addToCart(state, action) {
+    updateCart(state, action) {
       let updatedItem = {};
       const userAction = action.payload.userAction;
       // update qty of added Item
       state.items.forEach((item) => {
         if (item.createdAt === action.payload.item.createdAt) {
-          if (userAction === "add") {
+          if (userAction === "addItemToCart") {
             item.qty++;
             item.stock--;
           } else {
@@ -29,12 +30,12 @@ const roboSlice = createSlice({
       });
       // add item to cart with qty 1
       const actionQtyCheck =
-        (userAction === "add" && updatedItem.qty === 1) ||
-        (userAction === "remove" && updatedItem.qty === 0)
+        (userAction === "addItemToCart" && updatedItem.qty === 1) ||
+        (userAction === "removeItemFromCart" && updatedItem.qty === 0)
           ? true
           : false;
       if (actionQtyCheck) {
-        if (userAction === "add") {
+        if (userAction === "addItemToCart") {
           state.cartItems.push(updatedItem);
         } else {
           // userAction === "remove"
@@ -46,7 +47,7 @@ const roboSlice = createSlice({
         // update cart items
         state.cartItems.forEach((element) => {
           if (element.createdAt === updatedItem.createdAt) {
-            if (userAction === "add") {
+            if (userAction === "addItemToCart") {
               element.qty++;
               element.stock--;
             } else {
@@ -71,6 +72,20 @@ const roboSlice = createSlice({
     },
     materialList(state, action) {
       state.materialList = action.payload.materialList;
+    },
+    updateMaterialCount(state, action) {
+      if (action.payload.userAction === "createMaterialMap") {
+        state.materialMap = action.payload.materialMap;
+      } else {
+        const materialType = action.payload.materialType;
+        const userAction = action.payload.userAction;
+
+        if (userAction === "addItemToCart") {
+          state.materialMap[materialType] += 1;
+        } else {
+          state.materialMap[materialType] -= 1;
+        }
+      }
     },
   },
 });

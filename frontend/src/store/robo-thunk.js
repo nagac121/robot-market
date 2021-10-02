@@ -43,6 +43,13 @@ export const fetchRoboData = () => {
        */
       materialList.sort();
       dispatch(roboActions.materialList({ materialList }));
+
+      // prepare material map
+      const materialMap = {};
+      for (const material of materialList) {
+        materialMap[material] = 0;
+      }
+      dispatch(roboActions.updateMaterialCount({ materialMap, userAction: "createMaterialMap" }));
     } catch (error) {
       console.log("error: ", error);
     }

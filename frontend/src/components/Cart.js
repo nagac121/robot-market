@@ -15,17 +15,17 @@ function Cart() {
 
   const onClickIncrCart = (element) => {
     dispatch(
-      roboActions.addToCart({
+      roboActions.updateCart({
         item: element,
-        userAction: "add",
+        userAction: "addItemToCart",
       })
     );
   };
   const onClickDecrCart = (element) => {
     dispatch(
-      roboActions.addToCart({
+      roboActions.updateCart({
         item: element,
-        userAction: "remove",
+        userAction: "removeItemFromCart",
       })
     );
   };
