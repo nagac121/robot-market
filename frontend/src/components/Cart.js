@@ -35,24 +35,12 @@ function Cart() {
         userAction: "addItemToCart",
       })
     );
-    dispatch(
-      roboActions.createMaterialMap({
-        materialType: element.material,
-        userAction: "cartPlus",
-      })
-    );
   };
   const onClickDecrQtyBtn = (element) => {
     dispatch(
       roboActions.updateCart({
         item: element,
         userAction: "removeItemFromCart",
-      })
-    );
-    dispatch(
-      roboActions.createMaterialMap({
-        materialType: element.material,
-        userAction: "cartMinus",
       })
     );
   };
@@ -88,7 +76,13 @@ function Cart() {
               </IconButton>
             </span>
             <div className="cart-item-name">Material: {element.material}</div>
-            <div>Total price: {element.qty * element.price} </div>
+            <div>
+              Total price:{" "}
+              {parseFloat(element.qty * element.price)
+                .toFixed(2)
+                .toString()
+                .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}{" "}
+            </div>
           </div>
         ))}
       {cartItems.length !== 0 && <div> Total amount: {totalAmt}</div>}

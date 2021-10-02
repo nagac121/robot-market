@@ -8,7 +8,8 @@ const roboSlice = createSlice({
     filterValue: "",
     items: [],
     materialList: [],
-    materialMap: {},
+    materialMap: [],
+    materialCount: "",
   },
   reducers: {
     updateCart(state, action) {
@@ -72,20 +73,6 @@ const roboSlice = createSlice({
     },
     materialList(state, action) {
       state.materialList = action.payload.materialList;
-    },
-    updateMaterialCount(state, action) {
-      if (action.payload.userAction === "createMaterialMap") {
-        state.materialMap = action.payload.materialMap;
-      } else {
-        const materialType = action.payload.materialType;
-        const userAction = action.payload.userAction;
-
-        if (userAction === "addItemToCart") {
-          state.materialMap[materialType] += 1;
-        } else {
-          state.materialMap[materialType] -= 1;
-        }
-      }
     },
   },
 });
