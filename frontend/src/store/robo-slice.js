@@ -29,6 +29,19 @@ const roboSlice = createSlice({
           updatedItem = { ...item };
         }
       });
+      state.filteredItems.forEach((item) => {
+        if (item.createdAt === action.payload.item.createdAt) {
+          if (userAction === "addItemToCart") {
+            item.qty++;
+            item.stock--;
+          } else {
+            // userAction === "remove"
+            item.qty--;
+            item.stock++;
+          }
+          updatedItem = { ...item };
+        }
+      });
       // add item to cart with qty 1
       const actionQtyCheck =
         (userAction === "addItemToCart" && updatedItem.qty === 1) ||
