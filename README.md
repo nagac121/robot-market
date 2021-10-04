@@ -1,3 +1,13 @@
+# Install & Run application
+```
+cd frontend
+npm i
+npm start
+cd server
+npm i
+npm start
+```
+
 # Robot Market
 
 This is an e-commerce site for you to buy robots. The homepage should display a list of robots for people to browse,
