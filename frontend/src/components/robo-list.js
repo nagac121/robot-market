@@ -1,31 +1,19 @@
 import "./robo-list.css";
 
-import React, { useEffect, useRef, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
-import Button from "@mui/material/Button";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-
-import { roboActions } from "../store/robo-slice";
 import ProductFilter from "./product-filter";
+import CartButton from "./robot-gallery";
 
-function RoboList(props) {
+function RoboList() {
   const imageRef = useRef();
-  const dispatch = useDispatch();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [cartSize, setCartSize] = useState(0);
 
   const roboItems = useSelector((state) => state.robo.items);
   const filteredRoboItems = useSelector((state) => state.robo.filteredItems);
   const filterValue = useSelector((state) => state.robo.filterValue);
-  const cartList = useSelector((state) => state.robo.cartItems);
-
-  useEffect(() => {
-    setCartSize(() => {
-      return cartList.length;
-    });
-  }, [cartList]);
 
   const galleryItems = filterValue ? filteredRoboItems : roboItems;
 
@@ -57,19 +45,6 @@ function RoboList(props) {
       return null;
     }
     return <div className="loader">Loading...</div>;
-  };
-
-  const onClickAddBtn = (robo) => {
-    if (cartSize > 4) {
-      alert(`cannot add more than ${cartSize} material`);
-    } else {
-      dispatch(
-        roboActions.updateCart({
-          item: robo,
-          userAction: "addItemToCart",
-        })
-      );
-    }
   };
 
   return (
@@ -107,14 +82,7 @@ function RoboList(props) {
                 <div>Material: {robo.material}</div>
               </div>
               <div>
-                <Button
-                  variant="outlined"
-                  startIcon={<AddShoppingCartIcon fontSize="small" />}
-                  disabled={robo.stock === 0}
-                  onClick={onClickAddBtn.bind(this, robo)}
-                >
-                  Add
-                </Button>
+                <CartButton item={robo} />
               </div>
             </div>
           );
