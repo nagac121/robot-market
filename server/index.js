@@ -15,7 +15,7 @@ app.get('/api/robots', (req, res) => {
     const name = faker.name.firstName() + ' ' + faker.name.lastName();
     const image = `https://robohash.org/${name}.png?size=120x120`;
     const price = faker.finance.amount();
-    const stock = faker.random.number({ max: 10, min: 0 });
+    const stock = faker.datatype.number({ max: 10, min: 0 });
     const createdAt = faker.date.past();
     const material = faker.commerce.productMaterial();
 
