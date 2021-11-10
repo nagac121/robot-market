@@ -1,11 +1,15 @@
 import { roboActions } from "./robo-slice";
 
+/**
+ * a thunk or action creator is a func --> that returns an a func --> which returns an action
+ */
 // cutom action creators
 export const fetchRoboData = () => {
   const obj = {};
   const materialList = [];
   // fetch data
   return async (dispatch) => {
+    // fetch data, save res, try dispatch, catch error
     const fetchData = async () => {
       const response = await fetch("http://localhost:8000/api/robots");
       if (!response.ok) {
