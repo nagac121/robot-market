@@ -1,7 +1,7 @@
 import { roboActions } from "./robo-slice";
 
 /**
- * a thunk or action creator is a func --> that returns an a func --> which returns an action
+ * a "thunk/action creator" is a func --> that returns a func --> which in return dispatches an action
  */
 // cutom action creators
 export const fetchRoboData = () => {
